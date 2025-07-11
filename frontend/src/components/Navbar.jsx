@@ -136,17 +136,17 @@ const styles = {
     border: 'none',
     fontSize: '16px',
     fontWeight: '500',
-    cursor: 'pointer',
+    cursor: 'url(/cursor.cur), default', 
   },
   profileMenu: {
   position: 'relative',
-  cursor: 'pointer',
+   cursor: 'url(/cursor.cur), default', 
 },
 
 profileIcon: {
   fontSize: '22px',
   color: '#fff',
-  cursor: 'pointer'
+   cursor: 'url(/cursor.cur), default',  
 },
 profileMenuContainer: {
   position: 'relative',
@@ -166,7 +166,7 @@ dropdown: {
 
 dropdownItem: {
   padding: '8px 16px',
-  cursor: 'pointer',
+    cursor: 'url(/cursor.cur), default',  
   color: '#333',
 },
 

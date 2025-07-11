@@ -2,7 +2,8 @@ const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
-
+const paymentRoutes = require('./routes/paymentRoutes');
+require("dotenv").config();
 
 dotenv.config(); // ✅ Load environment variables from .env file
 
@@ -24,7 +25,7 @@ app.use(express.json()); // Parse JSON bodies
 app.use('/api/auth', require('./routes/auth')); // ✅ Import auth routes
 app.use('/api/user', require('./routes/user'));
 app.use('/api/orders', require('./routes/orders')); //orders route
-
+app.use('/api/payment', paymentRoutes);
 
 
 // ✅ Sample route

@@ -84,7 +84,7 @@ const styles = {
     padding: '10px 14px',
     borderRadius: '6px',
     border: 'none',
-    cursor: 'pointer',
+     cursor: 'url(/cursor.cur), default', 
   },
   mapBox: {
     marginTop: '20px',
@@ -92,7 +92,7 @@ const styles = {
   mapImage: {
     width: '600px',
     height: '300px',
-    cursor: 'pointer',
+   cursor: 'url(/cursor.cur), default', 
   },
 };
 

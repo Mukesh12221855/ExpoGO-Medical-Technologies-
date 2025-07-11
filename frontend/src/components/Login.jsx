@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function Login({onClose, onLogin}) {
+function Login({onClose, onLogin, openRegister }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -27,12 +27,25 @@ function Login({onClose, onLogin}) {
       if (response.ok) {
         alert('✅ Login successful!');
         // ✅ Save the token to localStorage (or context)
-        localStorage.setItem('token', data.token);
+        sessionStorage.setItem('token', data.token);
+        sessionStorage.setItem('user', JSON.stringify(data.user));
+
         onClose(); // Close the login overlay
         onLogin();
+        
+  if (data.user.role === 'admin') {
+    window.open('/admin', '_blank'); // 👈 Open admin in new tab
+  } else {
+    onLogin(); // Normal user login flow
+    onClose();
+  }
       } else {
         alert('❌ Error: ' + data.message);
       }
+       if (data.message === 'User not found') {
+    onClose();        // Close Login
+    openRegister();   // Open Register
+  }
     } catch (error) {
       console.error('Error:', error);
       alert('❌ Network error!');
@@ -76,7 +89,7 @@ function Login({onClose, onLogin}) {
             fontSize: '20px',
             background: 'none',
             border: 'none',
-            cursor: 'pointer',
+           cursor: 'url(/cursor.cur), default', 
           }}
         >
           ❌
@@ -102,6 +115,10 @@ function Login({onClose, onLogin}) {
             style={inputStyle}
           />
           <button type="submit" style={buttonStyle}>Login</button>
+          <p style={{ marginTop: '10px', textAlign: 'center' }}>
+  Don't have an account? <span onClick={() => { onClose(); openRegister(); }} style={{ color: '#0d6efd', cursor: 'pointer' }}>Register</span>
+</p>
+
         </form>
       </div>
     </div>
@@ -123,7 +140,7 @@ const buttonStyle = {
   padding: '10px',
   border: 'none',
   borderRadius: '5px',
-  cursor: 'pointer',
+   cursor: 'url(/cursor.cur), default', 
 };
 
 export default Login;

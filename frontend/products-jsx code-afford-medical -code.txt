@@ -333,7 +333,7 @@ addToCartButton: {
   border: 'none',
   borderRadius: '20px',
   padding: '8px 16px',
-  cursor: 'pointer',
+  cursor: 'url(/cursor.cur), default', 
   fontSize: '14px',
   transition: 'background-color 0.3s',
 },
@@ -344,7 +344,7 @@ buyNowButton: {
   border: 'none',
   borderRadius: '20px',
   padding: '8px 16px',
-  cursor: 'pointer',
+   cursor: 'url(/cursor.cur), default', 
   fontSize: '14px',
   transition: 'background-color 0.3s',
 },
@@ -364,7 +364,7 @@ cartIcon: {
   borderRadius: '20px',
   padding: '8px 16px',
   fontSize: '14px',
-  cursor: 'pointer',
+   cursor: 'url(/cursor.cur), default', 
   boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
 },
 
@@ -375,7 +375,7 @@ checkoutIcon: {
   borderRadius: '20px',
   padding: '8px 16px',
   fontSize: '14px',
-  cursor: 'pointer',
+   cursor: 'url(/cursor.cur), default', 
   boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
 },
 
@@ -438,7 +438,7 @@ cartItemPrice: {
 removeButton: {
   backgroundColor: 'transparent',
   border: 'none',
-  cursor: 'pointer',
+  cursor: 'url(/cursor.cur), default', 
   fontSize: '18px',
   marginLeft: 'auto',
 },
@@ -452,7 +452,7 @@ quantityControls: {
 quantityButton: {
   padding: '4px 8px',
   fontSize: '14px',
-  cursor: 'pointer',
+ cursor: 'url(/cursor.cur), default', 
   border: '1px solid #ccc',
   borderRadius: '4px',
   margin: '0 5px',

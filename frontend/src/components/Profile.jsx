@@ -104,7 +104,7 @@ function Profile({ onClose }) {
             fontSize: '20px',
             background: 'none',
             border: 'none',
-            cursor: 'pointer',
+            cursor: 'url(/cursor.cur), default',  
           }}
         >
           ❌
@@ -218,7 +218,7 @@ const buttonStyle = {
   color: 'white',
   border: 'none',
   borderRadius: '5px',
-  cursor: 'pointer',
+    cursor: 'url(/cursor.cur), default',  
 };
 
 export default Profile;

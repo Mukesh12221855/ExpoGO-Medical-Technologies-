@@ -1,14 +1,40 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import molecule from '../assets/molecule.jpg'
 
 function Home() {
+
+  //image-effect 
+   const [bgVisible, setBgVisible] = useState(false);
+   //image-effect 
+   const [isHoveredCEO1, setIsHoveredCEO1] = useState(false);
+   const [isHoveredCEO2, setIsHoveredCEO2] = useState(false);
+
+
+   //aos-animation
   useEffect(() => {
     AOS.init({ duration: 1000, once: false, mirror: true, easing: 'ease-in-out', });
   }, []);
 
   return (
-    <section id="home" style={styles.homeSection}>
+    <section
+      id="home"
+      style={{
+        ...styles.homeSection,
+        position: 'relative',
+        overflow: 'hidden',
+      }}
+      onMouseEnter={() => setBgVisible(true)}
+      onMouseLeave={() => setBgVisible(false)}
+    >
+  {/* Background image layer */}
+      <div
+        style={{
+          ...styles.backgroundImage,
+          opacity: bgVisible ? 0.1 : 0,  //transperent effect
+        }}
+      ></div>
 
       {/* Top Row: Logo & CEO */}
       <div style={styles.topRow}>
@@ -25,11 +51,26 @@ function Home() {
 
         {/* Right Side: CEO Info */}
         <div data-aos="fade-left" style={styles.rightContent}>
-          <img src="/nav.ico" alt="CEO" style={styles.ceoImage} />
+          <img src="/nav.ico" alt="CEO" style={{...styles.ceoImage,transform: isHoveredCEO1 ? 'scale(1.3)' : 'scale(1)' }}
+          onMouseEnter={() => setIsHoveredCEO1(true)}
+          onMouseLeave={() => setIsHoveredCEO1(false)}
+          />
+          
           <p style={styles.ceoName}><strong>Dr. Chandana Mukesh</strong></p>
           <p style={styles.ceoBio}>Founder & CEO, ExpoGo Medical Technologies</p>
         </div>
+
+        <div data-aos="fade-left" style={styles.rightContent}>
+          <img src="/nav2.ico" alt="CEO" style={{...styles.ceoImage,transform: isHoveredCEO2 ? 'scale(1.3)' : 'scale(1)' }}
+          onMouseEnter={() => setIsHoveredCEO2(true)}
+          onMouseLeave={() => setIsHoveredCEO2(false)}
+          />
+          
+          <p style={styles.ceoName}><strong>Dr. Vishnum Naidu Babbodhi</strong></p>
+          <p style={styles.ceoBio}>Chairman, ExpoGo Medical Technologies</p>
+        </div>
       </div>
+      
 
       {/* Center Description */}
       <div data-aos="fade-up" style={styles.centerDescription}>
@@ -56,6 +97,20 @@ const styles = {
     fontFamily: "'Poppins', sans-serif",
     padding: '80px 20px',
   },
+  backgroundImage: {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: '80%',
+    height: '80%',
+    backgroundImage: `url(${molecule})`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    transition: 'opacity 1.5s ease',
+    zIndex: 0,
+},
+
   topRow: {
     display: 'flex',
     justifyContent: 'space-between',
@@ -80,12 +135,12 @@ const styles = {
   companyName: {
     fontSize: '32px',
     fontWeight: '700',
-    color: '#188754',
+    color: '#000',
     marginBottom: '10px',
   },
   shortIntro: {
     fontSize: '16px',
-    color: '#555',
+    color: '#000',
   },
   rightContent: {
     display: 'flex',
@@ -98,14 +153,16 @@ const styles = {
     height: '200px',
     borderRadius: '50%',
     objectFit: 'cover',
+    transition: 'transform 0.5s ease',
   },
+
   ceoName: {
     fontSize: '18px',
-    color: '#188754',
+    color: '#000',
   },
   ceoBio: {
     fontSize: '14px',
-    color: '#555',
+    color: '#000',
     textAlign: 'center',
   },
   centerDescription: {
@@ -115,7 +172,7 @@ const styles = {
   },
   description: {
     fontSize: '18px',
-    color: '#555',
+    color: '#000',
   },
   button: {
     backgroundColor: '#188754',

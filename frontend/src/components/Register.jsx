@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 
-function Register({onClose, onRegister}) {
+function Register({onClose, onRegister, openLogin}) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [role, setRole] = useState('user');  // 'user' or 'admin'
+  const [email, setEmail] = useState('');
 
-
-  
   const handleBackgroundClick = (e) => {
     if (e.target.id === 'registerOverlay') {
       onClose();
@@ -20,16 +19,16 @@ function Register({onClose, onRegister}) {
       const response = await fetch('http://localhost:5000/api/auth/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password, role }),
+        body: JSON.stringify({ username, email, password, role }),
       });
 
       const data = await response.json();
 
-      if (response.ok) {
-        alert('✅ Registered successfully!');
-        onClose();
-        onRegister();
-      } else {
+     if (response.ok) {
+  alert('✅ Registration successful! Please log in now.');
+  onClose();    // Close Register
+  openLogin();  // Open Login
+} else {
         alert('❌ Error: ' + data.message);
       }
     } catch (error) {
@@ -37,7 +36,8 @@ function Register({onClose, onRegister}) {
       alert('❌ Network error!');
     }
   };
- return (
+
+  return (
     <div
       id="registerOverlay"
       onClick={handleBackgroundClick}
@@ -74,7 +74,7 @@ function Register({onClose, onRegister}) {
             fontSize: '20px',
             background: 'none',
             border: 'none',
-            cursor: 'pointer',
+              cursor: 'url(/cursor.cur), default',  
           }}
         >
           ❌
@@ -88,6 +88,14 @@ function Register({onClose, onRegister}) {
             placeholder="Username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
+            required
+            style={inputStyle}
+          />
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             required
             style={inputStyle}
           />
@@ -129,7 +137,7 @@ const buttonStyle = {
   padding: '10px',
   border: 'none',
   borderRadius: '5px',
-  cursor: 'pointer',
+  cursor: 'url(/cursor.cur), default',  
 };
 
 export default Register;
